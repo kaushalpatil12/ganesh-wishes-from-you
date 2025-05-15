@@ -21,14 +21,14 @@ export const copyToClipboard = () => {
 
 export const shareOnWhatsApp = (name: string) => {
   const text = `Happy Ganesh Chaturthi from ${name}! Create your own wishes: `;
-  const url = window.location.href;
+  const url = generateShareUrl(name);
   
   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + url)}`;
   window.open(whatsappUrl, '_blank');
 };
 
 export const shareOnFacebook = (name: string) => {
-  const url = window.location.href;
+  const url = generateShareUrl(name);
   
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
   window.open(facebookUrl, '_blank');
@@ -36,6 +36,9 @@ export const shareOnFacebook = (name: string) => {
 
 export const generateShareUrl = (name: string) => {
   const url = new URL(window.location.href);
-  url.searchParams.set('from', name);
+  // Remove any existing parameters
+  url.search = '';
+  // Add the from parameter with the encoded name
+  url.searchParams.set('from', encodeURIComponent(name));
   return url.toString();
 };

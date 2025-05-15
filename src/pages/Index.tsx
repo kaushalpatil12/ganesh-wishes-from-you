@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import GaneshHeader from "@/components/GaneshHeader";
@@ -8,19 +9,11 @@ import { generateShareUrl } from "@/utils/shareUtils";
 const Index = () => {
   const [name, setName] = useState<string>("");
   const [showShare, setShowShare] = useState<boolean>(false);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   
   useEffect(() => {
     // Show share options when name is entered
     setShowShare(name.length > 0);
-    
-    // Only update URL when explicitly sharing, not on every name change
-    const fromParam = searchParams.get("from");
-    if (!name && fromParam) {
-      // Keep the 'from' parameter if it exists but no name is entered
-      // Don't update the search params here
-    }
   }, [name]);
 
   const handleNameChange = (newName: string) => {

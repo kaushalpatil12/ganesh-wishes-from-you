@@ -19,7 +19,7 @@ const WishGenerator = ({ className, onNameChange }: WishGeneratorProps) => {
 
   useEffect(() => {
     if (fromParam) {
-      setFromName(fromParam);
+      setFromName(decodeURIComponent(fromParam));
       setShowAnimation(true);
       setTimeout(() => setShowAnimation(false), 1000);
     }
