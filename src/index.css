@@ -51,6 +51,7 @@
 @layer components {
   .festival-card {
     @apply bg-white bg-opacity-90 rounded-lg shadow-lg border border-festival-orange/30 p-6 backdrop-blur-sm;
+    box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.1), 0 4px 6px -2px rgba(249, 115, 22, 0.05);
   }
   
   .input-field {
@@ -59,10 +60,12 @@
   
   .share-button {
     @apply bg-festival-saffron hover:bg-festival-red transition-colors text-white font-medium px-6 py-3 rounded-full shadow-md hover:shadow-lg focus:outline-none inline-flex items-center gap-2;
+    box-shadow: 0 4px 14px 0 rgba(249, 115, 22, 0.39);
   }
   
   .social-share-button {
     @apply p-3 rounded-full text-white shadow-md hover:shadow-lg transition-all transform hover:scale-105;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
 }
 
@@ -82,5 +85,33 @@
   to {
     transform: rotate(var(--rotate)) translateY(calc(100vh + 100px)) translateX(var(--x));
     opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(249, 115, 22, 0.1) 25%, rgba(249, 115, 22, 0.2) 37%, rgba(249, 115, 22, 0.1) 63%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
   }
 }

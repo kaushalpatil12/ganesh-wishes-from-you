@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import GaneshHeader from "@/components/GaneshHeader";
 import WishGenerator from "@/components/WishGenerator";
 import ShareOptions from "@/components/ShareOptions";
@@ -34,16 +34,22 @@ const Index = () => {
         <ShareOptions name={name} showShare={showShare} />
         
         <div className="mt-8 text-center text-sm text-muted-foreground">
-          <p>May Lord Ganesha bring happiness and prosperity to your life!</p>
+          <p className="animate-pulse-slow">May Lord Ganesha bring happiness and prosperity to your life!</p>
         </div>
       </div>
       
-      {/* Decorative elements */}
+      {/* Decorative elements with enhanced animations */}
       <div className="fixed top-10 left-10 animate-float hidden lg:block">
         <div className="w-16 h-16 bg-festival-yellow/30 rounded-full backdrop-blur-sm" />
       </div>
-      <div className="fixed bottom-10 right-10 animate-float hidden lg:block">
+      <div className="fixed bottom-10 right-10 animate-float hidden lg:block" style={{ animationDelay: "1s" }}>
         <div className="w-12 h-12 bg-festival-orange/30 rounded-full backdrop-blur-sm" />
+      </div>
+      <div className="fixed top-1/4 right-10 animate-float hidden lg:block" style={{ animationDelay: "1.5s" }}>
+        <div className="w-10 h-10 bg-festival-saffron/20 rounded-full backdrop-blur-sm" />
+      </div>
+      <div className="fixed bottom-1/4 left-10 animate-float hidden lg:block" style={{ animationDelay: "0.5s" }}>
+        <div className="w-14 h-14 bg-festival-red/20 rounded-full backdrop-blur-sm" />
       </div>
     </div>
   );
