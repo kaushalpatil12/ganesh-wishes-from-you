@@ -9,6 +9,7 @@ interface GaneshHeaderProps {
 
 const GaneshHeader = ({ className }: GaneshHeaderProps) => {
   const [imageIndex, setImageIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>([false, false, false]);
   
   const ganeshImages = [
     "/ganesh-1.webp",
@@ -23,6 +24,18 @@ const GaneshHeader = ({ className }: GaneshHeaderProps) => {
     
     return () => clearInterval(interval);
   }, []);
+
+  const handleImageLoad = (index: number) => {
+    setImagesLoaded(prev => {
+      const newState = [...prev];
+      newState[index] = true;
+      return newState;
+    });
+  };
+
+  const handleImageError = (index: number) => {
+    console.error(`Failed to load image at ${ganeshImages[index]}`);
+  };
 
   return (
     <header className={cn("text-center", className)}>
@@ -41,8 +54,16 @@ const GaneshHeader = ({ className }: GaneshHeaderProps) => {
               "w-full max-w-xs md:max-w-sm mx-auto rounded-lg transition-all duration-1000",
               idx === imageIndex ? "opacity-100 scale-100" : "opacity-0 scale-95 absolute top-0 left-0 right-0"
             )}
+            onLoad={() => handleImageLoad(idx)}
+            onError={() => handleImageError(idx)}
           />
         ))}
+        
+        {!imagesLoaded.some(loaded => loaded) && (
+          <div className="bg-gray-200 w-full h-60 flex items-center justify-center rounded-lg">
+            <p className="text-gray-500">Loading Ganesha images...</p>
+          </div>
+        )}
       </div>
       
       <div className="animate-fade-in">
