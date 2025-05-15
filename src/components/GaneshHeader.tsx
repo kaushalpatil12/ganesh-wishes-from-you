@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Confetti } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 interface GaneshHeaderProps {
   className?: string;
@@ -28,7 +28,7 @@ const GaneshHeader = ({ className }: GaneshHeaderProps) => {
     <header className={cn("text-center", className)}>
       <div className="animate-float mx-auto mb-4 relative overflow-hidden rounded-lg shadow-xl">
         <div className="absolute top-1 left-1 md:top-2 md:left-2 bg-festival-saffron/80 text-white p-1 md:p-2 rounded-br-lg z-10 flex items-center">
-          <Confetti className="w-3 h-3 md:w-4 md:h-4 mr-1" />
+          <Sparkles className="w-3 h-3 md:w-4 md:h-4 mr-1" />
           <span className="text-xs md:text-sm font-semibold">Ganesh Festival</span>
         </div>
         
