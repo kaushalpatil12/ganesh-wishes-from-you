@@ -26,8 +26,14 @@ const WishGenerator = ({ className, onNameChange }: WishGeneratorProps) => {
   }, [fromParam]);
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-    onNameChange(e.target.value);
+    const newName = e.target.value;
+    setName(newName);
+    onNameChange(newName);
+  };
+
+  // Prevent form submission
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
   };
 
   return (
@@ -58,7 +64,7 @@ const WishGenerator = ({ className, onNameChange }: WishGeneratorProps) => {
         </div>
       </div>
 
-      <div className="max-w-sm mx-auto">
+      <form onSubmit={handleSubmit} className="max-w-sm mx-auto">
         <Input
           type="text"
           placeholder="Enter your name"
@@ -67,7 +73,7 @@ const WishGenerator = ({ className, onNameChange }: WishGeneratorProps) => {
           className="input-field"
           aria-label="Your name"
         />
-      </div>
+      </form>
     </div>
   );
 };
